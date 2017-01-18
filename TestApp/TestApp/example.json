@@ -1,0 +1,37 @@
+{
+    "name": "总部门",
+    "number": 6,
+    "sub": [{
+            "name": "综合部门",
+            "number": 2,
+            "sub": [],
+            "members":[{
+                       "name":"王五",
+                       "attr":{
+                       "tel":"123456",
+                       "address":"城市街道门牌号"
+                       }
+                       }]
+            },
+            {
+            "name": "后勤部门",
+            "number": 4,
+            "sub":  [{
+                     "name": "xx部门",
+                     "number": 2,
+                     "sub": [],
+                     "members":[{
+                                "name":"王五",
+                                }
+                                ],
+                     "members":[{
+                                "name":"刘九",
+                                }]
+                     }]
+            }],
+    "attr":{
+        "tel":"55555",
+        "address":"XXX————XXX"
+    }
+}
+            
