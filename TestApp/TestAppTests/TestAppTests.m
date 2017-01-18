@@ -80,14 +80,15 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
-
+//MARK: Test Code
 - (void)testDataModelConvertion{
+//    example 1
     NSDictionary *departmentInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"example" withExtension:@"json"]] options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"\ndepartmentInfo Dict:\n%@",departmentInfo);
     Department *department = [Department modelFromDict:departmentInfo];
     NSLog(@"\ndepartmentInfo Model:\n%@",department);
     NSLog(@"\nModel to Dict : \n%@",[department modelToDict]);
-    
+    //example 2
     NSDictionary *dict = @{@"name":@"🐶",@"number":@(12),@"dict":@{@"key":@"value"}};
     ExampleObj *obj = [[ExampleObj alloc] init];
     [obj setObjProperty:dict];

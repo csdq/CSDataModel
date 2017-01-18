@@ -52,7 +52,7 @@
 }
 //MARK:子类重载方法
 - (void)didSetPropertyValue{
-     //自定义的属性设置 子类继承实现
+    //自定义的属性设置 子类继承实现
 }
 - (void)customSetProperty:(NSDictionary *)dict{
     //自定义的属性设置 子类继承实现
@@ -65,23 +65,25 @@
     unsigned int count = 0;
     Ivar *list = class_copyIvarList([self class], &count);
     for (int i = 0; i < count; i++) {
-        NSString *key = [NSString stringWithCString:ivar_getName(list[i]) encoding:NSUTF8StringEncoding];
+        NSString *key = [NSString stringWithCString:ivar_getName(list[i])
+                                           encoding:NSUTF8StringEncoding];
         if([key hasPrefix:@"_"]){
             key = [key substringFromIndex:1];
         }
         id objForKey = dict[key];
-//        NSString *uppercaseKey = [key uppercaseString];
-//        NSString *lowercaseKey = [key lowercaseString];
-//        if(objForKey == nil){
-//            objForKey = dict[uppercaseKey]==nil?dict[lowercaseKey]:dict[uppercaseKey];
-//        }
-        if(objForKey == nil || [objForKey isKindOfClass:[NSNull class]]){
+        //        NSString *uppercaseKey = [key uppercaseString];
+        //        NSString *lowercaseKey = [key lowercaseString];
+        //        if(objForKey == nil){
+        //            objForKey = dict[uppercaseKey]==nil?dict[lowercaseKey]:dict[uppercaseKey];
+        //        }
+        if(objForKey == nil
+           || [objForKey isKindOfClass:[NSNull class]]){
             continue;
         }
         NSString *customType = self.subModelDict[key];
-//        if(customType == nil){
-//            customType = self.subModelDict[uppercaseKey]==nil?self.subModelDict[lowercaseKey]:self.subModelDict[uppercaseKey];
-//        }
+        //        if(customType == nil){
+        //            customType = self.subModelDict[uppercaseKey]==nil?self.subModelDict[lowercaseKey]:self.subModelDict[uppercaseKey];
+        //        }
         if(nil != customType){
             Class cls = NSClassFromString(customType);
             NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Or Not Subclass Of CSBaseModel");
@@ -103,8 +105,9 @@
             continue;
         }
         
-        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i]) encoding:NSUTF8StringEncoding];
-       
+        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
+                                            encoding:NSUTF8StringEncoding];
+        
         if([type hasPrefix:@"@"]){
             object_setIvar(self, list[i], objForKey);
         }else{
@@ -119,7 +122,8 @@
     Ivar *list = class_copyIvarList([self class], &count);
     for (int i = 0; i < count; i++) {
         //FIXME:!!!没有考虑非对象的成员变量
-        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i]) encoding:NSUTF8StringEncoding];
+        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
+                                            encoding:NSUTF8StringEncoding];
         if([type hasPrefix:@"@"]){
             object_setIvar(obj, list[i], object_getIvar(self, list[i]));
         }
@@ -132,16 +136,18 @@
     unsigned int count = 0;
     Ivar *list = class_copyIvarList([self class], &count);
     for (int i = 0; i < count; i++) {
-        NSString *proName = [NSString stringWithCString:ivar_getName(list[i]) encoding:NSUTF8StringEncoding];
+        NSString *proName = [NSString stringWithCString:ivar_getName(list[i])
+                                               encoding:NSUTF8StringEncoding];
         if([proName hasPrefix:@"_"]){
             proName = [proName substringFromIndex:1];
         }
-        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i]) encoding:NSUTF8StringEncoding];
+        NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
+                                            encoding:NSUTF8StringEncoding];
         if([type hasPrefix:@"@"]){
             id value = object_getIvar(self, list[i]);
             if([value isKindOfClass:[NSArray class]]){
                 NSArray *array = value;
-               Class cls = [[array firstObject] class];
+                Class cls = [[array firstObject] class];
                 if([cls isSubclassOfClass:[CSBaseModel class]]){
                     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:[array count]];
                     for (int i = 0; i<array.count; i++) {
@@ -150,22 +156,23 @@
                     [dict setObject:arr forKey:proName];
                 }
             }else if([value isKindOfClass:[CSBaseModel class]]){
-                [dict setObject:[(CSBaseModel *)value modelToDict] forKey:proName];
+                [dict setObject:[(CSBaseModel *)value modelToDict]
+                         forKey:proName];
             }else{
                 if(value != nil){
                     [dict setObject:value forKey:proName];
                 }
-//                    else{
-//                    if([type containsString:@"NSArray"]||[type containsString:@"NSMutableArray"]){
-//                        [dict setObject:@[] forKey:proName];
-//                    }else if([type containsString:@"NSDictionary"]||[type containsString:@"NSMutableDictionary"]){
-//                        [dict setObject:@{} forKey:proName];
-//                    }else if([type containsString:@"NSNumber"]){
-//                        [dict setObject:@(0) forKey:proName];
-//                    }else if([type containsString:@"NSString"]||[type containsString:@"NSMutableString"]){
-//                        [dict setObject:@"" forKey:proName];
-//                    }
-//                }
+                //                    else{
+                //                    if([type containsString:@"NSArray"]||[type containsString:@"NSMutableArray"]){
+                //                        [dict setObject:@[] forKey:proName];
+                //                    }else if([type containsString:@"NSDictionary"]||[type containsString:@"NSMutableDictionary"]){
+                //                        [dict setObject:@{} forKey:proName];
+                //                    }else if([type containsString:@"NSNumber"]){
+                //                        [dict setObject:@(0) forKey:proName];
+                //                    }else if([type containsString:@"NSString"]||[type containsString:@"NSMutableString"]){
+                //                        [dict setObject:@"" forKey:proName];
+                //                    }
+                //                }
             }
         }
     }
