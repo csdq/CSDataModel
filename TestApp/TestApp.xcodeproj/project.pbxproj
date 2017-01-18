@@ -83,7 +83,6 @@
 		E0B0B7C91E2F393300B01CA5 = {
 			isa = PBXGroup;
 			children = (
-				E0B0B8191E2F5B1000B01CA5 /* CSDataModel.framework */,
 				E0B0B7D41E2F393300B01CA5 /* TestApp */,
 				E0B0B7EE1E2F393300B01CA5 /* TestAppTests */,
 				E0B0B7D31E2F393300B01CA5 /* Products */,
@@ -119,6 +118,7 @@
 		E0B0B7D51E2F393300B01CA5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0B0B8191E2F5B1000B01CA5 /* CSDataModel.framework */,
 				E0B0B7D61E2F393300B01CA5 /* main.m */,
 			);
 			name = "Supporting Files";
