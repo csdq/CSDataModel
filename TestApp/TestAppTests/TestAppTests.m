@@ -72,6 +72,7 @@
     Department *department = [Department modelFromDict:departmentInfo];
     NSLog(@"\ndepartmentInfo Model:\n%@",department);
     NSLog(@"\nModel to Dict : \n%@",[department modelToDict]);
+    
 }
 
 - (void)tearDown {

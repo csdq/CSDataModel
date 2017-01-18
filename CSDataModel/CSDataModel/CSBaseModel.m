@@ -24,7 +24,7 @@
 + (instancetype)modelFromDict:(NSDictionary *)dict{
     CSBaseModel* obj = [self new];
     [obj setModelDataFromDictUseDictKey:dict];
-    [obj didSetProperty];
+    [obj didSetPropertyValue];
     return obj;
 }
 
@@ -39,7 +39,7 @@
 + (instancetype)modelFromDictInCustom:(NSDictionary *)dict{
     id obj = [self new];
     [obj customSetProperty:dict];
-    [obj didSetProperty];
+    [obj didSetPropertyValue];
     return obj;
 }
 
@@ -51,7 +51,7 @@
     return arrayTmp;
 }
 //MARK:子类重载方法
-- (void)didSetProperty{
+- (void)didSetPropertyValue{
      //自定义的属性设置 子类继承实现
 }
 - (void)customSetProperty:(NSDictionary *)dict{
@@ -137,10 +137,9 @@
             proName = [proName substringFromIndex:1];
         }
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i]) encoding:NSUTF8StringEncoding];
-//        NSLog(@"type:%@",type);
         if([type hasPrefix:@"@"]){
             id value = object_getIvar(self, list[i]);
-            if([value isKindOfClass:[NSArray class]]){//[type containsString:@"NSArray"]||[type containsString:@"NSMutableArray"]){
+            if([value isKindOfClass:[NSArray class]]){
                 NSArray *array = value;
                Class cls = [[array firstObject] class];
                 if([cls isSubclassOfClass:[CSBaseModel class]]){
@@ -182,11 +181,7 @@
 }
 
 - (NSString *)getModelPropertyData{
-    return [NSString stringWithFormat:@"\n%@\n%@",[super description],[self propertyDescription]];
-}
-
-- (NSString *)propertyDescription{
-    return [[self modelToDict] description];
+    return [NSString stringWithFormat:@"\n%@\n%@",[super description],[self modelToDict]];
 }
 
 @end

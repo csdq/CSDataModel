@@ -69,16 +69,8 @@
  *
  */
 - (NSDictionary *)modelToDict;
-/**
- *  所有属性值的拼接 原本设想是用于判断多个模型内容是否相等
- *
- *  @return 拼接后的字符串
- */
-- (NSString *)propertyDescription;
 /*
  * 属性设置完毕后自动调用方法
- *
- *
  */
-- (void)didSetProperty;
+- (void)didSetPropertyValue;
 @end
