@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  TestApp
 //
-//  Created by shitingquan on 2017/1/18.
+//  Created by stq on 2017/1/18.
 //  Copyright © 2017年 CSDQ. All rights reserved.
 //
 

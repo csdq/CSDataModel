@@ -13,7 +13,7 @@
  *  自动解析时：
  *  对于模型内含有子模型或者含有子模型数组等情况，将属性名称和模型类名以键值对形式存储
  *  该属性填充时间必须在数据格式转化之前，最好在子模型的init时处理
- *  例如：@{"key":"ModelClassName"}
+ *  例如：@{"propertyName":"ModelClassName"}
  */
 @property (nonatomic , strong ,readonly) NSMutableDictionary *subModelDict;
 
