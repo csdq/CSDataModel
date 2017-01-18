@@ -10,6 +10,8 @@
 		E0B0B8091E2F398B00B01CA5 /* CSDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0B0B8171E2F39E700B01CA5 /* CSBaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8151E2F39E700B01CA5 /* CSBaseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0B0B8181E2F39E700B01CA5 /* CSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */; };
+		E0B0B8261E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8241E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0B0B8271E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		E0B0B8081E2F398B00B01CA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0B0B8151E2F39E700B01CA5 /* CSBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBaseModel.h; sourceTree = "<group>"; };
 		E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBaseModel.m; sourceTree = "<group>"; };
+		E0B0B8241E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CSPropertyValueSetter.h"; sourceTree = "<group>"; };
+		E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CSPropertyValueSetter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +54,22 @@
 		E0B0B8061E2F398B00B01CA5 /* CSDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				E0B0B8151E2F39E700B01CA5 /* CSBaseModel.h */,
-				E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */,
+				E0B0B81F1E2F901E00B01CA5 /* Class */,
 				E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */,
 				E0B0B8081E2F398B00B01CA5 /* Info.plist */,
 			);
 			path = CSDataModel;
+			sourceTree = "<group>";
+		};
+		E0B0B81F1E2F901E00B01CA5 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				E0B0B8151E2F39E700B01CA5 /* CSBaseModel.h */,
+				E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */,
+				E0B0B8241E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h */,
+				E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */,
+			);
+			name = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -66,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B0B8091E2F398B00B01CA5 /* CSDataModel.h in Headers */,
+				E0B0B8261E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h in Headers */,
 				E0B0B8171E2F39E700B01CA5 /* CSBaseModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B0B8271E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m in Sources */,
 				E0B0B8181E2F39E700B01CA5 /* CSBaseModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

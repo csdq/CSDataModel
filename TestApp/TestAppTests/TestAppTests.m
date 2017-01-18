@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <CSDataModel/CSDataModel.h>
 
+//MARK: example1
 /**********/
 @interface Attribute : CSBaseModel
 @property (nonatomic , strong) NSString *tel;
@@ -55,6 +56,20 @@
 }
 @end
 
+
+//MARK: example2
+/****************/
+@interface ExampleObj : NSObject
+@property (nonatomic , strong) NSString *name;
+@property (nonatomic , strong) NSNumber *number;
+@property (nonatomic , strong) NSDictionary *dict;
+@end
+
+@implementation ExampleObj
+
+
+@end
+/****************/
 @interface TestAppTests : XCTestCase
 
 @end
@@ -73,6 +88,10 @@
     NSLog(@"\ndepartmentInfo Model:\n%@",department);
     NSLog(@"\nModel to Dict : \n%@",[department modelToDict]);
     
+    NSDictionary *dict = @{@"name":@"🐶",@"number":@(12),@"dict":@{@"key":@"value"}};
+    ExampleObj *obj = [[ExampleObj alloc] init];
+    [obj setObjProperty:dict];
+    NSLog(@"%@",obj);
 }
 
 - (void)tearDown {
