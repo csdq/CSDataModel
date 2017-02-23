@@ -86,7 +86,7 @@
         //        }
         if(nil != customType){
             Class cls = NSClassFromString(customType);
-            NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Kind Of CSBaseModel");
+            NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Or Not Subclass Of CSBaseModel");
             //            数组
             if([objForKey isKindOfClass:[NSArray class]]){
                 NSMutableArray *array = [NSMutableArray arrayWithCapacity:[objForKey count]];

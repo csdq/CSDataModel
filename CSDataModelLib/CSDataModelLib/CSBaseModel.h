@@ -7,16 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define CS_PROPERTY_STRING(name) @property (nonatomic , strong) NSString* name;
-#define CS_PROPERTY_NUMBER(name) @property (nonatomic , strong) NSNumber* name;
-#define CS_PROPERTY_ARRAY(name)  @property (nonatomic , strong) NSArray* name;
-#define CS_PROPERTY_ARRAY_WITH_ITEMTYPE(arrayName,itemClass)  @property (nonatomic , strong) NSArray<itemClass *>* arrayName;
 
-#define CS_PROPERTY_MUTABLE_STRING(name) @property (nonatomic , strong) NSMutableString* name;
-#define CS_PROPERTY_MUTABLE_ARRAY(name) @property (nonatomic , strong) NSMutableArray* name;
-#define CS_PROPERTY_MUTABLE_ARRAY_WITH_ITEMTYPE(arrayName,itemClass)  @property (nonatomic , strong) NSMutableArray<itemClass *>* arrayName;
-
-#define PROPERTY_INIT(class,name) - (class *)name{if(_##name == nil){_##name = [class new];}return _##name;}
 @interface CSBaseModel : NSObject
 /**
  *  自动解析时：
