@@ -14,12 +14,7 @@
 @implementation CSBaseModel
 @synthesize subModelDict = _subModelDict;
 //MARK:属性
-- (NSMutableDictionary *)subModelDict{
-    if(_subModelDict == nil){
-        _subModelDict = [NSMutableDictionary dictionary];
-    }
-    return _subModelDict;
-}
+PROPERTY_INIT(NSMutableDictionary, subModelDict)
 //MARK:主方法
 + (instancetype)modelFromDict:(NSDictionary *)dict{
     CSBaseModel* obj = [self new];
@@ -132,6 +127,7 @@
 }
 //MARK:
 - (NSDictionary *)modelToDict{
+    //filte weak property
     NSMutableArray *weakProArray = [NSMutableArray array];
     unsigned int propertyCount;
     objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
