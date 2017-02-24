@@ -132,6 +132,22 @@
 }
 //MARK:
 - (NSDictionary *)modelToDict{
+    NSMutableArray *weakProArray = [NSMutableArray array];
+    unsigned int propertyCount;
+    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    for (int propertyIndex = 0; propertyIndex < propertyCount; propertyIndex++) {
+        objc_property_t property = properties[propertyIndex];
+        const char *rawName = property_getName(property);
+        NSString *propertyName = [NSString stringWithCString:rawName encoding:[NSString defaultCStringEncoding]];
+        char const *attributes = property_getAttributes(property);
+        NSString *attributesString = [NSString stringWithCString:attributes encoding:[NSString defaultCStringEncoding]];
+        NSArray *attributesArray = [attributesString componentsSeparatedByString:@","];
+        BOOL weak = [attributesArray containsObject:@"W"];
+        if(weak){
+            [weakProArray addObject:propertyName];
+        }
+    }
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     unsigned int count = 0;
     Ivar *list = class_copyIvarList([self class], &count);
@@ -143,18 +159,20 @@
         }
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
                                             encoding:NSUTF8StringEncoding];
-        if([type hasPrefix:@"@"]){
+        if(![weakProArray containsObject:proName] && [type hasPrefix:@"@"]){
             id value = object_getIvar(self, list[i]);
             if([value isKindOfClass:[NSArray class]]){
                 NSArray *array = value;
-                Class cls = [[array firstObject] class];
-                if([cls isSubclassOfClass:[CSBaseModel class]]){
-                    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:[array count]];
-                    for (int i = 0; i<array.count; i++) {
+                NSMutableArray *arr = [NSMutableArray arrayWithCapacity:[array count]];
+                for (int i = 0; i < array.count; i++) {
+                    Class cls = [array[i] class];
+                    if([cls isSubclassOfClass:[CSBaseModel class]]){
                         [arr addObject:[(CSBaseModel *)array[i] modelToDict]];
+                    }else{
+                        [arr addObject:arr[i]];
                     }
-                    [dict setObject:arr forKey:proName];
                 }
+                [dict setObject:arr forKey:proName];
             }else if([value isKindOfClass:[CSBaseModel class]]){
                 [dict setObject:[(CSBaseModel *)value modelToDict]
                          forKey:proName];
