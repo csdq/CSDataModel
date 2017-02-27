@@ -165,7 +165,7 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
                     if([cls isSubclassOfClass:[CSBaseModel class]]){
                         [arr addObject:[(CSBaseModel *)array[i] modelToDict]];
                     }else{
-                        [arr addObject:arr[i]];
+                        [arr addObject:array[i]];
                     }
                 }
                 [dict setObject:arr forKey:proName];
