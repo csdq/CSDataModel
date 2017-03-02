@@ -54,7 +54,7 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
 }
 //MARK:字典数据填充到模型
 - (void)setModelDataFromDictUseDictKey:(NSDictionary *)dict{
-    if(dict == nil){
+    if(dict == nil || ![dict isKindOfClass:[NSDictionary class]]){
         return;
     }
     unsigned int count = 0;
