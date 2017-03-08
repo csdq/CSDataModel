@@ -92,6 +92,10 @@
     NSDictionary *dict = @{@"name":@"🐶",@"number":@(12),@"dict":@{@"key":@"value"}};
     ExampleObj *obj = [[ExampleObj alloc] init];
     [obj setObjProperty:dict];
+    
+    if([[[department modelToDict] description] containsString:[departmentInfo description]]){
+        NSLog(@"YES has same part");
+    }
     NSLog(@"%@",obj);
 }
 

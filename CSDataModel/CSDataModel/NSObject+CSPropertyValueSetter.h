@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (CSPropertyValueSetter)
+/*
+ * 扩展NSObject 将dict内的数据根据key-value，填充到本对象的属性内。
+ *
+ */
 - (void)setObjProperty:(NSDictionary *)dict;
 @end

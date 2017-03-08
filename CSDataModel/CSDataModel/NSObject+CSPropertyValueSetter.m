@@ -11,7 +11,7 @@
 
 @implementation NSObject (CSPropertyValueSetter)
 - (void)setObjProperty:(NSDictionary *)dict{
-    if(dict == nil){
+    if([dict isKindOfClass:[NSDictionary class]] || dict == nil){
         return;
     }
     unsigned int count = 0;

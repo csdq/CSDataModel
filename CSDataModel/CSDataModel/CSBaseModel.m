@@ -14,7 +14,7 @@
 @implementation CSBaseModel
 @synthesize subModelDict = _subModelDict;
 //MARK:属性
-PROPERTY_INIT(NSMutableDictionary, subModelDict)
+CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 //MARK:主方法
 + (instancetype)modelFromDict:(NSDictionary *)dict{
     CSBaseModel* obj = [self new];
@@ -54,7 +54,7 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
 }
 //MARK:字典数据填充到模型
 - (void)setModelDataFromDictUseDictKey:(NSDictionary *)dict{
-    if(dict == nil || ![dict isKindOfClass:[NSDictionary class]]){
+    if(![dict isKindOfClass:[NSDictionary class]] || dict == nil){
         return;
     }
     unsigned int count = 0;
@@ -81,20 +81,26 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
         //        }
         if(nil != customType){
             Class cls = NSClassFromString(customType);
+#if DEBUG
             NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Kind Of CSBaseModel");
-            //            数组
-            if([objForKey isKindOfClass:[NSArray class]]){
-                NSMutableArray *array = [NSMutableArray arrayWithCapacity:[objForKey count]];
-                for (int j = 0; j < [objForKey count]; j++) {
-                    [array addObject:[cls modelFromDict:objForKey[j]]];
+#endif
+            if(![cls isSubclassOfClass:[CSBaseModel class]]){
+                object_setIvar(self, list[i], objForKey);
+            }else{
+                //            数组
+                if([objForKey isKindOfClass:[NSArray class]]){
+                    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[objForKey count]];
+                    for (int j = 0; j < [objForKey count]; j++) {
+                        [array addObject:[cls modelFromDict:objForKey[j]]];
+                    }
+                    if([objForKey isKindOfClass:[NSMutableArray class]]){
+                        object_setIvar(self, list[i], array);
+                    }else{
+                        object_setIvar(self, list[i], [array copy]);
+                    }
+                }else if([objForKey isKindOfClass:[NSDictionary class]]){
+                    object_setIvar(self, list[i], [cls modelFromDict:objForKey]);
                 }
-                if([objForKey isKindOfClass:[NSMutableArray class]]){
-                    object_setIvar(self, list[i], array);
-                }else{
-                    object_setIvar(self, list[i], [array copy]);
-                }
-            }else if([objForKey isKindOfClass:[NSDictionary class]]){
-                object_setIvar(self, list[i], [cls modelFromDict:objForKey]);
             }
             //            字典
             continue;
@@ -125,7 +131,7 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
     }
     return obj;
 }
-//MARK:
+//MARK: 模型转化为字典类型
 - (NSDictionary *)modelToDict{
     //filte weak property
     NSMutableArray *weakProArray = [NSMutableArray array];
@@ -138,12 +144,13 @@ PROPERTY_INIT(NSMutableDictionary, subModelDict)
         char const *attributes = property_getAttributes(property);
         NSString *attributesString = [NSString stringWithCString:attributes encoding:[NSString defaultCStringEncoding]];
         NSArray *attributesArray = [attributesString componentsSeparatedByString:@","];
+        //      2017-03-08  此处是为了防止循环引用 目前对于弱引用的对象 不再递归处理
         BOOL weak = [attributesArray containsObject:@"W"];
         if(weak){
             [weakProArray addObject:propertyName];
         }
     }
-
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     unsigned int count = 0;
     Ivar *list = class_copyIvarList([self class], &count);
