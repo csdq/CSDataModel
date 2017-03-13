@@ -1,6 +1,6 @@
 {
     "name": "总部门",
-    "number": 6,
+    "number": "-6",
     "sub": [{
             "name": "综合部门",
             "number": 2,
@@ -15,7 +15,7 @@
             },
             {
             "name": "后勤部门",
-            "number": 4,
+            "number": "-4",
             "sub":  [{
                      "name": "xx部门",
                      "number": 2,

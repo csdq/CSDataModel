@@ -108,9 +108,14 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
                                             encoding:NSUTF8StringEncoding];
-        
+        //FIXME:20170313 实际 值和 属性类型不一致 主要针对 负数 如"-1.2" 解析成string的问题
         if([type hasPrefix:@"@"]){
-            object_setIvar(self, list[i], objForKey);
+            if([type containsString:@"NSNumber"] && [objForKey isKindOfClass:[NSString class]]){
+                NSNumber *value1 = [NSNumber numberWithFloat:[objForKey floatValue]];
+                object_setIvar(self, list[i], value1);
+            }else{
+                object_setIvar(self, list[i], objForKey);
+            }
         }else{
             //FIXME:!!!没有考虑非对象的成员变量
         }
