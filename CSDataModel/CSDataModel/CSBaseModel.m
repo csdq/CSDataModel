@@ -116,6 +116,9 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             if([type containsString:@"NSNumber"] && [objForKey isKindOfClass:[NSString class]]){
                 NSNumber *value1 = [NSNumber numberWithFloat:[objForKey floatValue]];
                 object_setIvar(self, list[i], value1);
+            }else  if([type containsString:@"String"] && [objForKey isKindOfClass:[NSNumber class]]){
+                NSString *value1 = [objForKey stringValue];
+                object_setIvar(self, list[i], value1);
             }else{
                 object_setIvar(self, list[i], objForKey);
             }
