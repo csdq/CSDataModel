@@ -16,8 +16,4 @@
  *  @param dict 原数据
  */
 - (void)setObjProperty:(NSDictionary *)dict;
-/*
- *  根据属性的字符串获取该属性的值
- */
-- (id)valueForProperty:(NSString *)property;
 @end

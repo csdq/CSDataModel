@@ -38,14 +38,4 @@
         }
     }
 }
-
-- (id)valueForProperty:(NSString *)property{
-    if(nil == property || [property length] == 0){
-        return nil;
-    }
-    const char* name = [[@"_" stringByAppendingString:property] cStringUsingEncoding:NSUTF8StringEncoding];
-    Ivar ivar = class_getInstanceVariable([self class], name);
-    return object_getIvar(self, ivar);
-}
-
 @end
