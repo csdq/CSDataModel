@@ -2,7 +2,7 @@
 //  NSObject+CSPropertyValueSetter.m
 //  CSDataModel
 //
-//  Created by shitingquan on 2017/1/18.
+//  Created by mr.s on 2017/1/18.
 //  Copyright © 2017年 CSDQ. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @implementation NSObject (CSPropertyValueSetter)
 - (void)setObjProperty:(NSDictionary *)dict{
-    if([dict isKindOfClass:[NSDictionary class]] || dict == nil){
+    if(nil == dict || ![dict isKindOfClass:[NSDictionary class]]){
         return;
     }
     unsigned int count = 0;
@@ -27,11 +27,25 @@
         }
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i]) encoding:NSUTF8StringEncoding];
         if([type hasPrefix:@"@"]){
-            object_setIvar(self, list[i], objForKey);
+            if([type containsString:@"NSNumber"] && [objForKey isKindOfClass:[NSString class]]){
+                NSNumber *value1 = [NSNumber numberWithFloat:[objForKey floatValue]];
+                object_setIvar(self, list[i], value1);
+            }else{
+                object_setIvar(self, list[i], objForKey);
+            }
         }else{
             //FIXME:!!!没有考虑非对象的成员变量
         }
     }
+}
+
+- (id)valueForProperty:(NSString *)property{
+    if(nil == property || [property length] == 0){
+        return nil;
+    }
+    const char* name = [[@"_" stringByAppendingString:property] cStringUsingEncoding:NSUTF8StringEncoding];
+    Ivar ivar = class_getInstanceVariable([self class], name);
+    return object_getIvar(self, ivar);
 }
 
 @end

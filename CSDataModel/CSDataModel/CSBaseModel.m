@@ -18,7 +18,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 //MARK:主方法
 + (instancetype)modelFromDict:(NSDictionary *)dict{
     CSBaseModel* obj = [self new];
-    [obj setModelDataFromDictUseDictKey:dict];
+    [obj setPropertyWithDict:dict];
     [obj didSetPropertyValue];
     return obj;
 }
@@ -30,7 +30,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
     }];
     return arrayTmp;
 }
-
+//使用customSetProperty方法哪的对应关系解析
 + (instancetype)modelFromDictInCustom:(NSDictionary *)dict{
     id obj = [self new];
     [obj customSetProperty:dict];
@@ -45,16 +45,19 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
     }];
     return arrayTmp;
 }
+
 //MARK:子类重载方法
 - (void)didSetPropertyValue{
     //自定义的属性设置 子类继承实现
 }
+
 - (void)customSetProperty:(NSDictionary *)dict{
     //自定义的属性设置 子类继承实现
 }
+
 //MARK:字典数据填充到模型
-- (void)setModelDataFromDictUseDictKey:(NSDictionary *)dict{
-    if(![dict isKindOfClass:[NSDictionary class]] || dict == nil){
+- (void)setPropertyWithDict:(NSDictionary *)dict{
+    if(nil == dict || ![dict isKindOfClass:[NSDictionary class]]){
         return;
     }
     unsigned int count = 0;

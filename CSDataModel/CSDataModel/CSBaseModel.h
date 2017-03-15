@@ -61,7 +61,7 @@
 + (instancetype)modelFromDictInCustom:(NSDictionary *)dict;
 /**
  *  手动设置解析规则 字典数组转化为模型数组
- *  使用自己的规则解析
+ *  使用customSetProperty:内定义的对应关系解析
  *  @param array 字典数组
  *
  *  @return 模型数组
@@ -80,7 +80,7 @@
  *
  *  @param dict 原数据
  */
-- (void)setModelDataFromDictUseDictKey:(NSDictionary *)dict;
+- (void)setPropertyWithDict:(NSDictionary *)dict;
 /**
  *  模型转换为字典
  */
@@ -89,5 +89,4 @@
  * 属性设置完毕后自动调用方法
  */
 - (void)didSetPropertyValue;
-
 @end
