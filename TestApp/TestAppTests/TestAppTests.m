@@ -28,7 +28,7 @@
 {
     self = [super init];
     if (self) {
-        [self.subModelDict setObject:@"Attribute" forKey:@"attr"];
+        [self registerClass:[Attribute class] forProperty:@"attr"];
     }
     return self;
 }
@@ -48,9 +48,9 @@
 {
     self = [super init];
     if (self) {
-        [self.subModelDict setObject:@"Department" forKey:@"sub"];
-        [self.subModelDict setObject:@"Member" forKey:@"members"];
-        [self.subModelDict setObject:@"Attribute" forKey:@"attr"];
+        [self registerClass:[Department class] forProperty:@"sub"];
+        [self registerClass:[Member class] forProperty:@"members"];
+        [self registerClass:[Attribute class] forProperty:@"attr"];
     }
     return self;
 }
@@ -96,7 +96,8 @@
     if([[[department modelToDict] description] containsString:[departmentInfo description]]){
         NSLog(@"YES has same part");
     }
-    NSLog(@"%@ %@",obj, [obj valueForProperty:@"name"]);
+
+    NSLog(@"%@ %@ \n JSON:\n%@",obj, [obj valueForKey:@"name"],[department JSONString]);
 }
 
 - (void)tearDown {

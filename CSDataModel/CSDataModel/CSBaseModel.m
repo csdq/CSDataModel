@@ -8,13 +8,36 @@
 #import "CSBaseModel.h"
 #import <objc/runtime.h>
 @interface CSBaseModel()<NSCopying>
-
+{
+    //    NSDictionary *_propertyNameDict
+}
+@property (nonatomic , strong ,readonly) NSMutableDictionary *subModelDict;
 @end
 
 @implementation CSBaseModel
 @synthesize subModelDict = _subModelDict;
 //MARK:属性
 CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        NSMutableDictionary *mDict = [NSMutableDictionary dictionary];
+//        id currentClass = [self class];
+//        NSString *propertyName;
+//        unsigned int outCount = 0, i = 0;
+//        objc_property_t *properties = class_copyPropertyList(currentClass, &outCount);
+//        for (i = 0; i < outCount; i++) {
+//            objc_property_t property = properties[i];
+//            propertyName = [NSString stringWithCString:property_getName(property)];
+//            mDict setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
+//        }
+//    }
+//    return self;
+//}
+- (void)dealloc{
+
+}
 //MARK:主方法
 + (instancetype)modelFromDict:(NSDictionary *)dict{
     CSBaseModel* obj = [self new];
@@ -44,6 +67,10 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         [arrayTmp addObject:[self modelFromDictInCustom:obj]];
     }];
     return arrayTmp;
+}
+
+- (void)registerClass:(Class)cls forProperty:(NSString *)property{
+    [self.subModelDict setObject:cls forKey:property];
 }
 
 //MARK:子类重载方法
@@ -78,12 +105,11 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
            || [objForKey isKindOfClass:[NSNull class]]){
             continue;
         }
-        NSString *customType = self.subModelDict[key];
+        Class cls = self.subModelDict[key];
         //        if(customType == nil){
         //            customType = self.subModelDict[uppercaseKey]==nil?self.subModelDict[lowercaseKey]:self.subModelDict[uppercaseKey];
         //        }
-        if(nil != customType){
-            Class cls = NSClassFromString(customType);
+        if(nil != cls){
 #if DEBUG
             NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Kind Of CSBaseModel");
 #endif
@@ -108,7 +134,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             //            字典
             continue;
         }
-        
+
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
                                             encoding:NSUTF8StringEncoding];
         //FIXME:20170313 实际 值和 属性类型不一致 主要针对 负数 如"-1.2" 解析成string的问题
@@ -161,7 +187,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             [weakProArray addObject:propertyName];
         }
     }
-    
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     unsigned int count = 0;
     Ivar *list = class_copyIvarList([self class], &count);
@@ -209,6 +235,12 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         }
     }
     return dict;
+}
+
+- (NSString *)JSONString{
+    NSError *err;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:[self modelToDict] options:NSJSONWritingPrettyPrinted error:&err];
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)description{

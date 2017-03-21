@@ -27,14 +27,14 @@
 
 @interface CSBaseModel : NSObject
 /**
- *  自动解析时：
- *  对于模型内含有子模型或者含有子模型数组等情况，将属性名称和模型类名以键值对形式存储
- *  该属性填充时间必须在数据格式转化之前，最好在子模型的init时处理添加对应的key value
- *  该属性会自动懒加载
- *  例如：@{"property name":"model class"}
+ *  注册子模型相对应的类
+ *
+ *  @param cls 类型
+ *
+ *  @param property 属性名称
+ *
  */
-@property (nonatomic , strong ,readonly) NSMutableDictionary *subModelDict;
-
+- (void)registerClass:(Class)cls forProperty:(NSString *)property;
 /**
  *  自动处理字典数据与模型之间的关系 生成数据模型实体对象
  *
@@ -89,4 +89,6 @@
  * 属性设置完毕后自动调用方法
  */
 - (void)didSetPropertyValue;
+
+- (NSString *)JSONString;
 @end
