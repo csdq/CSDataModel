@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Department;
 @interface ViewController : UIViewController
-
-
+@property (nonatomic , strong) Department *department;
 @end
 

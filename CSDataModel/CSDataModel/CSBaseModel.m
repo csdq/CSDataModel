@@ -8,14 +8,10 @@
 #import "CSBaseModel.h"
 #import <objc/runtime.h>
 @interface CSBaseModel()<NSCopying>
-{
-    //    NSDictionary *_propertyNameDict
-}
-@property (nonatomic , strong ,readonly) NSMutableDictionary *subModelDict;
+@property (nonatomic , strong) NSMutableDictionary *subModelDict;
 @end
 
 @implementation CSBaseModel
-@synthesize subModelDict = _subModelDict;
 //MARK:属性
 CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 

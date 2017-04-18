@@ -20,6 +20,8 @@
 #define CS_PROPERTY_MUTABLE_ARRAY(name) @property (nonatomic , strong) NSMutableArray* name;
 #define CS_PROPERTY_MUTABLE_ARRAY_WITH_ITEMTYPE(arrayName,itemClass)  @property (nonatomic , strong) NSMutableArray<itemClass *>* arrayName;
 #define CS_PROPERTY_MUTABLE_DICT(name)  @property (nonatomic , strong) NSDictionary* name;
+
+#define CS_PROPERTY_CUSTOM_TYPE(name,class) @property (nonatomic , strong) class* name;
 /* 
  * Property Lazy Init Marco
  */

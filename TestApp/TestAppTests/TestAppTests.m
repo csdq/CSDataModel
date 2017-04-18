@@ -85,6 +85,7 @@
 //    example 1
     NSDictionary *departmentInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"example" withExtension:@"json"]] options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"\ndepartmentInfo Dict:\n%@",departmentInfo);
+    //
     Department *department = [Department modelFromDict:departmentInfo];
     NSLog(@"\ndepartmentInfo Model:\n%@",department);
     NSLog(@"\nModel to Dict : \n%@",[department modelToDict]);
