@@ -1,6 +1,6 @@
 # CSDataModel
 
-一个简单的数据模型积累，方便将NSDictionary、NSArray类型数据转为模型对象
+一个简单的数据模型基类，方便将NSDictionary、NSArray等类型数据转为模型对象
 
 ## 基本使用
 
