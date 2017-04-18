@@ -5,6 +5,7 @@ NSDictionary、NSArray类型数据转为模型类数据
 ## 基本使用
 
 例如一个JSON对象Department
+
 ``
 {
  "name": "DepartmentA",
@@ -57,6 +58,7 @@ Department *deprtmt = [Department modelFromDict:dict1];
     该JSON String转化成NSDictionary： dict2
 
 Department中含有成员Member
+
 ``
 @interface Department : CSBaseModel
 @property (nonatomic , strong) NSString *name;
@@ -71,6 +73,7 @@ Department中含有成员Member
 ``
 
     Deparmtent实现文件中需要注册子模型的类
+
 
 ``
 @implementation Department
@@ -92,4 +95,5 @@ Department中含有成员Member
 Department *deprtmt = [Department modelFromDict:dict2];
 
 ``
+
 转化成功后，可通过deprtmt.members访问member数组
