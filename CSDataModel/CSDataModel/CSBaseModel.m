@@ -18,25 +18,9 @@
 @synthesize subModelDict = _subModelDict;
 //MARK:属性
 CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
-//- (instancetype)init
-//{
-//    self = [super init];
-//    if (self) {
-//        NSMutableDictionary *mDict = [NSMutableDictionary dictionary];
-//        id currentClass = [self class];
-//        NSString *propertyName;
-//        unsigned int outCount = 0, i = 0;
-//        objc_property_t *properties = class_copyPropertyList(currentClass, &outCount);
-//        for (i = 0; i < outCount; i++) {
-//            objc_property_t property = properties[i];
-//            propertyName = [NSString stringWithCString:property_getName(property)];
-//            mDict setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
-//        }
-//    }
-//    return self;
-//}
-- (void)dealloc{
 
+- (void)dealloc{
+    [self.subModelDict removeAllObjects];
 }
 //MARK:主方法
 + (instancetype)modelFromDict:(NSDictionary *)dict{
@@ -96,19 +80,11 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             key = [key substringFromIndex:1];
         }
         id objForKey = dict[key];
-        //        NSString *uppercaseKey = [key uppercaseString];
-        //        NSString *lowercaseKey = [key lowercaseString];
-        //        if(objForKey == nil){
-        //            objForKey = dict[uppercaseKey]==nil?dict[lowercaseKey]:dict[uppercaseKey];
-        //        }
         if(objForKey == nil
            || [objForKey isKindOfClass:[NSNull class]]){
             continue;
         }
         Class cls = self.subModelDict[key];
-        //        if(customType == nil){
-        //            customType = self.subModelDict[uppercaseKey]==nil?self.subModelDict[lowercaseKey]:self.subModelDict[uppercaseKey];
-        //        }
         if(nil != cls){
 #if DEBUG
             NSAssert([cls isSubclassOfClass:[CSBaseModel class]], @"Not Kind Of CSBaseModel");
@@ -152,6 +128,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             //FIXME:!!!没有考虑非对象的成员变量
         }
     }
+    free(list);
 }
 //MARK:Protocol实现
 - (id)copyWithZone:(nullable NSZone *)zone{
@@ -166,6 +143,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
             object_setIvar(obj, list[i], object_getIvar(self, list[i]));
         }
     }
+    free(list);
     return obj;
 }
 //MARK: 模型转化为字典类型
@@ -181,7 +159,6 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         char const *attributes = property_getAttributes(property);
         NSString *attributesString = [NSString stringWithCString:attributes encoding:[NSString defaultCStringEncoding]];
         NSArray *attributesArray = [attributesString componentsSeparatedByString:@","];
-        //      2017-03-08  此处是为了防止循环引用 目前对于弱引用的对象 不再递归处理
         BOOL weak = [attributesArray containsObject:@"W"];
         if(weak){
             [weakProArray addObject:propertyName];
@@ -220,20 +197,11 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
                 if(value != nil){
                     [dict setObject:value forKey:proName];
                 }
-                //                    else{
-                //                    if([type containsString:@"NSArray"]||[type containsString:@"NSMutableArray"]){
-                //                        [dict setObject:@[] forKey:proName];
-                //                    }else if([type containsString:@"NSDictionary"]||[type containsString:@"NSMutableDictionary"]){
-                //                        [dict setObject:@{} forKey:proName];
-                //                    }else if([type containsString:@"NSNumber"]){
-                //                        [dict setObject:@(0) forKey:proName];
-                //                    }else if([type containsString:@"NSString"]||[type containsString:@"NSMutableString"]){
-                //                        [dict setObject:@"" forKey:proName];
-                //                    }
-                //                }
             }
         }
     }
+    free(properties);
+    free(list);
     return dict;
 }
 
