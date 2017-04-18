@@ -3,7 +3,7 @@
 //  CSDataModel
 //  将字典、数组类型数据转化为数据模型 如果自动解析，要求就是字典的key需要与model的属性一致
 //  Created by stq on 2015/7/20.
-//  Copyright © 2015年 CSDQ. All rights reserved.
+//  Copyright © 2015年 mr.s. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

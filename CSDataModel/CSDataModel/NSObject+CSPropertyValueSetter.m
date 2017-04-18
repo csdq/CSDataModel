@@ -3,7 +3,7 @@
 //  CSDataModel
 //
 //  Created by mr.s on 2017/1/18.
-//  Copyright © 2017年 CSDQ. All rights reserved.
+//  Copyright © 2017年 mr.s. All rights reserved.
 //
 
 #import "NSObject+CSPropertyValueSetter.h"
