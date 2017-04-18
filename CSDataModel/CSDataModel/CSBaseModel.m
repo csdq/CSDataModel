@@ -145,7 +145,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 //MARK: 模型转化为字典类型
 - (NSDictionary *)modelToDict{
     //filte weak property
-    NSMutableArray *weakProArray = [NSMutableArray array];
+    NSMutableSet *weakProSet = [NSMutableSet set];
     unsigned int propertyCount;
     objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
     for (int propertyIndex = 0; propertyIndex < propertyCount; propertyIndex++) {
@@ -155,9 +155,8 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         char const *attributes = property_getAttributes(property);
         NSString *attributesString = [NSString stringWithCString:attributes encoding:[NSString defaultCStringEncoding]];
         NSArray *attributesArray = [attributesString componentsSeparatedByString:@","];
-        BOOL weak = [attributesArray containsObject:@"W"];
-        if(weak){
-            [weakProArray addObject:propertyName];
+        if([attributesArray containsObject:@"W"]){
+            [weakProSet setValue:@(YES) forKey:propertyName];
         }
     }
 
@@ -172,7 +171,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
         }
         NSString *type = [NSString stringWithCString:ivar_getTypeEncoding(list[i])
                                             encoding:NSUTF8StringEncoding];
-        if(![weakProArray containsObject:proName] && [type hasPrefix:@"@"]){
+        if(![weakProSet containsObject:proName] && [type hasPrefix:@"@"]){
             id value = object_getIvar(self, list[i]);
             if([value isKindOfClass:[NSArray class]]){
                 NSArray *array = value;
