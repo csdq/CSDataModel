@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E05451C41EA5BF4000DA3DA7 /* CSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */; };
+		E05451C51EA5BF4000DA3DA7 /* NSObject+CSPropertyValueSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */; };
 		E0B0B8091E2F398B00B01CA5 /* CSDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0B0B8171E2F39E700B01CA5 /* CSBaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8151E2F39E700B01CA5 /* CSBaseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0B0B8181E2F39E700B01CA5 /* CSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */; };
@@ -14,7 +16,20 @@
 		E0B0B8271E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E05451B91EA5BEC600DA3DA7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E05451BB1EA5BEC600DA3DA7 /* libDataModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDataModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0B8041E2F398B00B01CA5 /* CSDataModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSDataModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSDataModel.h; sourceTree = "<group>"; };
 		E0B0B8081E2F398B00B01CA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -25,6 +40,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E05451B81EA5BEC600DA3DA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0B0B8001E2F398B00B01CA5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				E0B0B8041E2F398B00B01CA5 /* CSDataModel.framework */,
+				E05451BB1EA5BEC600DA3DA7 /* libDataModel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +111,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		E05451BA1EA5BEC600DA3DA7 /* DataModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E05451C31EA5BEC600DA3DA7 /* Build configuration list for PBXNativeTarget "DataModel" */;
+			buildPhases = (
+				E05451B71EA5BEC600DA3DA7 /* Sources */,
+				E05451B81EA5BEC600DA3DA7 /* Frameworks */,
+				E05451B91EA5BEC600DA3DA7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DataModel;
+			productName = libCSDataModel;
+			productReference = E05451BB1EA5BEC600DA3DA7 /* libDataModel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		E0B0B8031E2F398B00B01CA5 /* CSDataModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0B0B80C1E2F398B00B01CA5 /* Build configuration list for PBXNativeTarget "CSDataModel" */;
@@ -115,6 +155,10 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CSDQ;
 				TargetAttributes = {
+					E05451BA1EA5BEC600DA3DA7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					E0B0B8031E2F398B00B01CA5 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -134,6 +178,7 @@
 			projectRoot = "";
 			targets = (
 				E0B0B8031E2F398B00B01CA5 /* CSDataModel */,
+				E05451BA1EA5BEC600DA3DA7 /* DataModel */,
 			);
 		};
 /* End PBXProject section */
@@ -149,6 +194,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E05451B71EA5BEC600DA3DA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E05451C41EA5BF4000DA3DA7 /* CSBaseModel.m in Sources */,
+				E05451C51EA5BF4000DA3DA7 /* NSObject+CSPropertyValueSetter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0B0B7FF1E2F398B00B01CA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +215,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		E05451C11EA5BEC600DA3DA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E05451C21EA5BEC600DA3DA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		E0B0B80A1E2F398B00B01CA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -294,6 +366,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E05451C31EA5BEC600DA3DA7 /* Build configuration list for PBXNativeTarget "DataModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E05451C11EA5BEC600DA3DA7 /* Debug */,
+				E05451C21EA5BEC600DA3DA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E0B0B7FE1E2F398B00B01CA5 /* Build configuration list for PBXProject "CSDataModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
