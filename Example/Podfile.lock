@@ -1,0 +1,16 @@
+PODS:
+  - CSDataModel (0.1.0)
+
+DEPENDENCIES:
+  - CSDataModel (from `../`)
+
+EXTERNAL SOURCES:
+  CSDataModel:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CSDataModel: 56b473513fa2464fd856960b76d861048fa52f65
+
+PODFILE CHECKSUM: 2d4c79d3efea02a509cdb8ac47efbd89b1f9da79
+
+COCOAPODS: 1.4.0
