@@ -1,6 +1,0 @@
-framework module CSDataModel {
-  umbrella header "CSDataModel-umbrella.h"
-
-  export *
-  module * { export * }
-}
