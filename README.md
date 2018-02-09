@@ -1,77 +1,29 @@
 # CSDataModel
 
-一个简单的数据模型基类，方便将NSDictionary、NSArray等类型数据转为模型对象
+[![CI Status](http://img.shields.io/travis/stqemail@163.com/CSDataModel.svg?style=flat)](https://travis-ci.org/stqemail@163.com/CSDataModel)
+[![Version](https://img.shields.io/cocoapods/v/CSDataModel.svg?style=flat)](http://cocoapods.org/pods/CSDataModel)
+[![License](https://img.shields.io/cocoapods/l/CSDataModel.svg?style=flat)](http://cocoapods.org/pods/CSDataModel)
+[![Platform](https://img.shields.io/cocoapods/p/CSDataModel.svg?style=flat)](http://cocoapods.org/pods/CSDataModel)
 
-## 基本使用
+## Example
 
-例如一个JSON对象Department
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-	{  
-		"name": "DepartmentA",     
-		"tel": "88888888",  
-		"num": 1  
-	}
+## Requirements
 
-	该JSON String转化成NSDictionary： dict1
+## Installation
 
-### 模型：
+CSDataModel is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
-	@interface Department : CSBaseModel  
-	@property (nonatomic , strong) NSString *name;  
-	@property (nonatomic , strong) NSString *tel;  
-	@property (nonatomic , strong) NSNumber *num;  
-	@end
+```ruby
+pod 'CSDataModel'
+```
 
-### 转化时：
+## Author
 
-	Department *deprtmt = [Department modelFromDict:dict1];
+Mr.s stqemail@163.com
 
-## 嵌套使用
+## License
 
-### 模型
-对于常见的情况：
-
-	{  
-	"name": "departmentA",  
-	"number": 3,  
-	"members": [{  
-		"name": "王五",  
-		"jobNum": "0023"  
-		},  
-		{  
-			"name": "陈六",  
-			"jobNum": "0028"  
-			}]  
-	}
-
-    该JSON String转化成NSDictionary： dict2
-
-Department中含有成员Member
-
-	@interface Department : CSBaseModel  
-	@property (nonatomic , strong) NSString *name;  
-	@property (nonatomic , strong) NSArray<Member*> *members;  
-	@end
-	  
-	@interface Member : CSBaseModel 
-	@property (nonatomic , strong) NSString *name;
-	@property (nonatomic , strong) NSNumber *jobNum;  
-	@end
-
-    Deparmtent实现文件中需要注册子模型的类
-
-	@implementation Department  
-	-(instancetype)init{
-		self = [super init]; 
-		if (self) {
-			[self registerClass:[Member class]   forProperty:@"members"]; 
-			}   
-	 return self;
-	 }
-	 @end
-
-### 转化时：
-
-	Department *deprtmt = [Department modelFromDict:dict2];
-
-转化成功后，可通过deprtmt.members访问member数组
+CSDataModel is available under the MIT license. See the LICENSE file for more info.
