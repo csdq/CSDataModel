@@ -37,11 +37,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"example" withExtension:@"json"]] options:NSJSONReadingAllowFragments error:nil];
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[mainBundle URLForResource:@"example" withExtension:@"json"]] options:NSJSONReadingAllowFragments error:nil];
     ResponseObj *obj = [ResponseObj modelFromDict:response];
     _dataArray = obj.department.subs;
     self.title = obj.department.name;
     self.tableView.tableFooterView = [UIView new];
+    
+    //Add Array to JSON
+    NSLog(@"%@ %@",[_dataArray cs_JSON],[obj JSONString]);
 }
 
 - (void)didReceiveMemoryWarning {

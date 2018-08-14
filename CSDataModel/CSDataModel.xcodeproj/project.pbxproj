@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B96627A2122C1E700B90836 /* NSObject+CSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B9662782122C1E700B90836 /* NSObject+CSJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B96627B2122C1E700B90836 /* NSObject+CSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9662792122C1E700B90836 /* NSObject+CSJSON.m */; };
 		E05451C41EA5BF4000DA3DA7 /* CSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */; };
 		E05451C51EA5BF4000DA3DA7 /* NSObject+CSPropertyValueSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */; };
 		E0B0B8091E2F398B00B01CA5 /* CSDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B9662782122C1E700B90836 /* NSObject+CSJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+CSJSON.h"; sourceTree = "<group>"; };
+		5B9662792122C1E700B90836 /* NSObject+CSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CSJSON.m"; sourceTree = "<group>"; };
 		E05451BB1EA5BEC600DA3DA7 /* libDataModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDataModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0B8041E2F398B00B01CA5 /* CSDataModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSDataModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0B8071E2F398B00B01CA5 /* CSDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSDataModel.h; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				E0B0B8161E2F39E700B01CA5 /* CSBaseModel.m */,
 				E0B0B8241E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h */,
 				E0B0B8251E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m */,
+				5B9662782122C1E700B90836 /* NSObject+CSJSON.h */,
+				5B9662792122C1E700B90836 /* NSObject+CSJSON.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -104,6 +110,7 @@
 			files = (
 				E0B0B8091E2F398B00B01CA5 /* CSDataModel.h in Headers */,
 				E0B0B8261E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.h in Headers */,
+				5B96627A2122C1E700B90836 /* NSObject+CSJSON.h in Headers */,
 				E0B0B8171E2F39E700B01CA5 /* CSBaseModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +216,7 @@
 			files = (
 				E0B0B8271E2F911A00B01CA5 /* NSObject+CSPropertyValueSetter.m in Sources */,
 				E0B0B8181E2F39E700B01CA5 /* CSBaseModel.m in Sources */,
+				5B96627B2122C1E700B90836 /* NSObject+CSJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 #import "CSBaseModel.h"
 #import <objc/runtime.h>
+#import "NSObject+CSJSON.h"
 @interface CSBaseModel()<NSCopying>
 @property (nonatomic , strong) NSMutableDictionary *subModelDict;
 @end
@@ -201,9 +202,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 }
 
 - (NSString *)JSONString{
-    NSError *err;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:[self modelToDict] options:NSJSONWritingPrettyPrinted error:&err];
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return [self cs_JSON];
 }
 
 - (NSString *)description{
@@ -216,6 +215,10 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
 
 - (NSString *)getModelPropertyData{
     return [NSString stringWithFormat:@"\n%@\n%@",[super description],[self modelToDict]];
+}
+
+- (id)cs_serializableObj{
+    return [self modelToDict];
 }
 
 @end

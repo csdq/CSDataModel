@@ -28,6 +28,8 @@
     _dataArray = [NSArray arrayWithObjects:self.department.subs,self.department.members,nil];
     self.mainInfoTV.text = self.department.desc;
     self.title = self.department.name;
+    
+    NSLog(@"%@",[_dataArray cs_JSON]);
 }
 
 

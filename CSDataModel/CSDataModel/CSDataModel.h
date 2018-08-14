@@ -16,4 +16,5 @@ FOUNDATION_EXPORT const unsigned char CSDataModelVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <CSDataModel/PublicHeader.h>
 #import <CSDataModel/CSBaseModel.h>
 #import <CSDataModel/NSObject+CSPropertyValueSetter.h>
+#import <CSDataModel/NSObject+CSJSON.h>
 
