@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CSDataModel_Example' do
+  pod 'CSDataModel', :path => '../'
+
+  target 'CSDataModel_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
