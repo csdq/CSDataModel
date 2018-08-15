@@ -1,18 +1,4 @@
-#
-# Be sure to run `pod lib lint CSDataModel.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
-Pod::Spec.new do |s|
-  s.name             = 'CSDataModel'
-  s.version          = '1.1.1'
-  s.summary          = '一个简单的数据模型基类，方便将NSDictionary、NSArray等类型数据转为模型对象'
-
-  s.description      = <<-DESC
-                        # CSDataModel
+ # CSDataModel
 
                         一个简单的数据模型基类，方便将NSDictionary、NSArray等类型数据转为模型对象
 
@@ -89,15 +75,3 @@ Pod::Spec.new do |s|
                         Department *deprtmt = [Department modelFromDict:dict2];
 
                         转化成功后，可通过deprtmt.members访问member数组
-
-                       DESC
-
-  s.homepage         = 'https://github.com/csdq/CSDataModel'
-  s.license          = { :type => 'GPL-3.0', :file => 'LICENSE' }
-  s.author           = { 'Mr.s' => 'stqemail@163.com' }
-  s.source           = { :git => 'https://github.com/csdq/CSDataModel.git', :tag => s.version.to_s }
-
-  s.ios.deployment_target = '8.0'
-
-  s.source_files = 'CSDataModel/Classes/**/*'
-end
