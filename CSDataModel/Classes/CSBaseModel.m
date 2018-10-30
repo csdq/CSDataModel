@@ -98,7 +98,7 @@ CS_PROPERTY_INIT(NSMutableDictionary, subModelDict)
                     if([objForKey isKindOfClass:[NSMutableArray class]]){
                         object_setIvar(self, list[i], array);
                     }else{
-                        object_setIvar(self, list[i], [array copy]);
+                        object_setIvar(self, list[i], [array mutableCopy]);
                     }
                 }else if([objForKey isKindOfClass:[NSDictionary class]]){
                     object_setIvar(self, list[i], [cls modelFromDict:objForKey]);

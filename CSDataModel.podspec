@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CSDataModel'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = '一个简单的数据模型基类，方便将NSDictionary、NSArray等类型数据转为模型对象'
 
   s.description      = <<-DESC
